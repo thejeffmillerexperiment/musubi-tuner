@@ -21,7 +21,6 @@
     - [Documentation](#documentation)
   - [Installation](#installation)
     - [pip based installation](#pip-based-installation)
-    - [Windows Training Manager installer (this fork)](#windows-training-manager-installer-this-fork)
     - [uv based installation](#uv-based-installation-experimental)
     - [Linux/MacOS](#linuxmacos)
     - [Windows](#windows)
@@ -202,39 +201,6 @@ Optional dependencies for additional features:
 ```bash
 pip install ascii-magic matplotlib tensorboard prompt-toolkit
 ```
-
-### Windows Training Manager installer (this fork)
-
-This fork adds a one-step Windows setup for the **LTX-2 Training Manager** ([`gui_dashboard`](./src/musubi_tuner/gui_dashboard/)): a local Python virtual environment, PyTorch and torchvision from the official CUDA wheel index, an editable install with the `dashboard` optional dependency, and a production build of the Svelte frontend.
-
-**Requirements:** Python 3.10 or later and **Node.js** (LTS recommended) on your `PATH`.
-
-From the repository root:
-
-1. Run **`install-windows.bat`** (or `powershell -ExecutionPolicy Bypass -File .\scripts\install-windows.ps1`).
-2. After it finishes, run **`run-dashboard.bat`** and open [http://localhost:7860](http://localhost:7860).
-
-**Installer options** (append to `install-windows.bat` or pass to the `.ps1` script):
-
-| Parameter | Description |
-|-----------|-------------|
-| `-Cuda` | `cu124` (default), `cu128`, or `cu130` — selects `https://download.pytorch.org/whl/<cuda>` for PyTorch |
-| `-SkipFrontend` | Skip `npm ci` and `npm run build` in `src/musubi_tuner/gui_dashboard/frontend` |
-| `-VenvPath` | Virtual environment directory (default: `.venv` next to `pyproject.toml`) |
-
-Examples:
-
-```bat
-install-windows.bat -Cuda cu128
-```
-
-```powershell
-powershell -ExecutionPolicy Bypass -File .\scripts\install-windows.ps1 -Cuda cu130 -SkipFrontend
-```
-
-`run-dashboard.bat` forwards extra arguments to the dashboard, for example `run-dashboard.bat --port 8080 --project path\to\project.json`.
-
-The [pip](#pip-based-installation) and [uv](#uv-based-installation-experimental) instructions below still apply if you prefer a manual install.
 
 ### uv based installation (experimental)
 
